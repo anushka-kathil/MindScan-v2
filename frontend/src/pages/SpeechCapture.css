@@ -1,0 +1,361 @@
+/* ===========================================
+   Speech / Acoustic Assessment Page — Light Editorial
+   Warm & Humanized Design
+   =========================================== */
+
+.speech-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: var(--clr-bg);
+}
+
+/* Header */
+.sp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    border-bottom: 1px solid var(--clr-border);
+    flex-shrink: 0;
+}
+
+.sp-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-primary);
+}
+
+.sp-progress-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clr-txt-muted);
+}
+
+.sp-progress-bar {
+    width: 180px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.sp-progress-fill {
+    height: 100%;
+    background: var(--clr-accent);
+    transition: width 0.4s ease;
+}
+
+/* Body Grid */
+.sp-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    overflow: hidden;
+}
+
+/* Left Panel */
+.sp-panel-left {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 60px;
+    border-right: 1px solid var(--clr-border);
+    overflow-y: auto;
+    gap: 20px;
+}
+
+.sp-step-tag {
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clr-txt-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sp-step-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--clr-border);
+}
+
+/* Prompt Card */
+.sp-prompt-card {
+    background: var(--clr-card);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 4px solid var(--clr-accent);
+}
+
+.sp-question-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--clr-primary);
+}
+
+.sp-guidance-text {
+    font-size: 0.85rem;
+    color: var(--clr-txt-muted);
+    line-height: 1.55;
+}
+
+/* Live Transcript Box */
+.sp-transcript-box {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    min-height: 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sp-transcript-label {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--clr-txt-muted);
+}
+
+.sp-transcript-text {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--clr-txt);
+    font-style: italic;
+}
+
+/* Mic Action Area */
+.sp-mic-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 16px 0;
+}
+
+.sp-timer {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--clr-primary);
+    letter-spacing: -0.02em;
+    transition: color 0.3s;
+}
+
+.sp-timer.recording {
+    color: #e53935;
+}
+
+.sp-timer.done {
+    color: #34d399;
+}
+
+.sp-mic-btn {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: var(--clr-primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.sp-mic-btn:hover:not(:disabled) {
+    background: var(--clr-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 168, 67, 0.35);
+}
+
+.sp-mic-btn.active {
+    background: #e53935;
+    animation: micPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.45);
+    }
+    50% {
+        box-shadow: 0 0 0 16px rgba(229, 57, 53, 0);
+    }
+}
+
+.sp-mic-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.sp-status-text {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--clr-txt-muted);
+}
+
+/* Nav row */
+.sp-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.sp-skip-link {
+    background: transparent;
+    border: none;
+    font-size: 0.76rem;
+    color: var(--clr-txt-muted);
+    text-decoration: underline;
+    cursor: pointer;
+    align-self: center;
+    transition: color 0.2s;
+    margin-top: 4px;
+}
+
+.sp-skip-link:hover {
+    color: var(--clr-primary);
+}
+
+/* Right Panel: Waveform & Friendly Tips */
+.sp-panel-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 50px;
+    gap: 24px;
+    background: var(--clr-surface);
+}
+
+.sp-side-title {
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clr-txt-muted);
+    align-self: flex-start;
+}
+
+/* Waveform Visualizer Box */
+.sp-wave-box {
+    width: 100%;
+    max-width: 340px;
+    height: 150px;
+    border: 1px solid var(--clr-border);
+    background: #e8e8e0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 0 16px;
+}
+
+.sp-wave-bar {
+    width: 5px;
+    background: var(--clr-primary);
+    border-radius: 3px;
+    transition: height 0.15s ease;
+}
+
+.sp-wave-bar.idle {
+    height: 6px;
+    opacity: 0.2;
+}
+
+.sp-wave-bar.active {
+    background: var(--clr-accent);
+    animation: barBounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes barBounce {
+    from {
+        height: 8px;
+    }
+    to {
+        height: var(--h, 60px);
+    }
+}
+
+.sp-wave-bar.done {
+    height: 10px;
+    opacity: 0.6;
+    background: #34d399;
+}
+
+/* Friendly Tips Card */
+.sp-tips-card {
+    width: 100%;
+    max-width: 340px;
+    background: #fff;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sp-tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--clr-txt-muted);
+}
+
+.sp-tip-bullet {
+    color: var(--clr-accent);
+    font-size: 0.7rem;
+    margin-top: 2px;
+}
+
+.sp-tip-item strong {
+    color: var(--clr-txt);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sp-header {
+        padding: 20px 24px;
+    }
+    .sp-body {
+        grid-template-columns: 1fr;
+    }
+    .sp-panel-left {
+        padding: 30px 24px;
+        border-right: none;
+        border-bottom: 1px solid var(--clr-border);
+    }
+    .sp-panel-right {
+        padding: 30px 24px;
+    }
+}
