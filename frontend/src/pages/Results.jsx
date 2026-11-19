@@ -196,11 +196,22 @@ export default function Results() {
                         fontSize: 13, color: 'var(--clr-txt-muted)'
                     }}>
                         <span style={{ fontSize: 22 }}>📷</span>
-                        <div>
-                            <p style={{ fontWeight: 700, color: '#818cf8', marginBottom: 4, fontSize: 14 }}>
-                                Facial Expression Observations
-                            </p>
-                            <p style={{ fontSize: 12, lineHeight: 1.5 }}>
+                        <div style={{ flex: 1 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                                <p style={{ fontWeight: 700, color: '#818cf8', margin: 0, fontSize: 14 }}>
+                                    Facial Expression Observations
+                                </p>
+                                {results.dominant_emotion && results.dominant_emotion !== 'unknown' && (
+                                    <span style={{
+                                        background: '#f0f0ff', color: '#818cf8',
+                                        borderRadius: 20, padding: '2px 10px',
+                                        fontSize: 11, fontWeight: 600, textTransform: 'capitalize'
+                                    }}>
+                                        {results.dominant_emotion}
+                                    </span>
+                                )}
+                            </div>
+                            <p style={{ fontSize: 12, lineHeight: 1.5, margin: 0 }}>
                                 {results.facial_note || 'Subtle facial expressions including eye engagement and emotional affect were captured during your questionnaire.'}
                             </p>
                         </div>

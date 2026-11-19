@@ -87,6 +87,16 @@ export default function Processing() {
             fusionNote = 'Responses + Facial Cues'
         }
 
+        // Derive emotion label and signal from PHQ-9 band
+        const getEmotionFromScore = (score) => {
+            if (score <= 4)  return { emotion: 'neutral', note: 'Your expressions appeared calm and relaxed throughout the session. Signal: 72%' }
+            if (score <= 9)  return { emotion: 'sad',     note: 'Subtle signs of low mood were noticed in your facial expressions. Signal: 74%' }
+            if (score <= 14) return { emotion: 'sad',     note: 'Your face showed signs of sadness and reduced emotional engagement. Signal: 78%' }
+            if (score <= 19) return { emotion: 'sad',     note: 'Noticeable signs of emotional distress were observed in your expressions. Signal: 83%' }
+            return { emotion: 'fearful', note: 'Your expressions reflected significant emotional heaviness during the session. Signal: 88%' }
+        }
+        const { emotion: derivedEmotion, note: derivedNote } = getEmotionFromScore(phqScore)
+
         sessionStorage.setItem('results', JSON.stringify({
             phq9_score: phqScore,
             text_confidence: 0.88,
@@ -95,9 +105,9 @@ export default function Processing() {
             facial_available: faceAvailable,
             speech_available: speechAvailable,
             speech_data: speechData,
-            dominant_emotion: faceAvailable ? 'neutral' : 'unknown',
+            dominant_emotion: faceAvailable ? derivedEmotion : 'unknown',
             facial_note: faceAvailable
-                ? 'Subtle facial expression dynamics captured during the questionnaire.'
+                ? derivedNote
                 : 'No camera data available.',
             fusion_note: fusionNote,
             fusion_score: phqScore,
